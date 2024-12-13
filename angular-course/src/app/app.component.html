@@ -1,0 +1,52 @@
+<div class="top-menu">
+
+    <img class="logo" src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png">
+
+</div>
+
+<!-- <h1> {{ rxjsCourse.description }}</h1> -->
+
+<div class="courses">
+
+    <!-- adding component course-card-->
+    <!-- passing data received from "app.component.ts" to "course-card.component.ts"  using [] -->
+    <!-- 
+        <course-card [title]="coreCourse.description"></course-card>
+        <course-card [title]="rxjsCourse.description"></course-card>
+        <course-card [title]="ngrxCourse.description"></course-card> 
+    -->
+    
+    <!-- passing data in data model format -->
+
+    <!-- 
+        <course-card [course]="coreCourse" (courseSelected)="onCourseSelected($event)"></course-card>
+        <course-card [course]="rxjsCourse" (courseSelected)="onCourseSelected($event)"></course-card>
+        <course-card [course]="ngrxCourse" (courseSelected)="onCourseSelected($event)"></course-card> 
+    -->
+    
+    <!-- OR -->
+
+    @for (course of courses; track trackCourse; 
+        let index = $index; 
+        let count = $count; 
+        let first=$first; 
+        let last=$last;
+        let even=$even;
+        let odd=$odd)
+    {
+        <course-card 
+            [course]="course" 
+            [index]="index"
+            [class.is-first]="first" 
+            [class.is-last]="last"
+            [class.is-even]="even"
+            [class.is-odd]="odd"
+            (courseSelected)="onCourseSelected($event)">
+        <!-- first course card element is applied css class .is-first, and last is applied .is-last    === these css styles are defined in assets > styles.css -->
+        </course-card>
+    }
+    @empty {
+        <h1>No courses found!</h1>
+        <!-- displayed when data to loop over in @for block is empty -->
+    }
+</div>
