@@ -31,11 +31,12 @@
 // METHOD 2 
 // getting data in data model format
 
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit, Output, ViewChild, ContentChild, ContentChildren, AfterContentInit } from '@angular/core';
 
 // Create a data model and import the model
 import { Course } from '../model/course';
 import { EventEmitter } from  '@angular/core';
+import { CourseImageComponent } from '../course-image/course-image.component';
 
 @Component({
   selector: 'course-card',
@@ -43,7 +44,7 @@ import { EventEmitter } from  '@angular/core';
   templateUrl: './course-card.component.html',
   styleUrl: './course-card.component.css'
 })
-export class CourseCardComponent implements OnInit{
+export class CourseCardComponent implements OnInit, AfterViewInit, AfterContentInit{
 
   // getting input data of type "Course" model
   @Input({
@@ -55,6 +56,25 @@ export class CourseCardComponent implements OnInit{
   index: number;
   
   ngOnInit(): void {}
+
+  // @ContentChild('courseImage') 
+  // //ContentChild can only be used for tags added inside <course-card></course-card> in app.component.html
+  // image;
+
+  // @ContentChild(CourseImageComponent)
+  // image:CourseImageComponent;
+
+  
+  @ContentChildren(CourseImageComponent)
+  images;
+
+  ngAfterViewInit(): void {
+    // console.log(this.image);
+  }
+
+  ngAfterContentInit(): void {
+    console.log(this.images);
+  }
 
   // // Event Function
   // onCourseViewed(){

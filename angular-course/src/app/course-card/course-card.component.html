@@ -15,7 +15,7 @@
         }
         @else if(course.iconUrl)
         {
-        <img width="300" alt="Angular Logo" [src]="course.iconUrl">
+        <img #courseImage width="300" alt="Angular Logo" [src]="course.iconUrl">
         }
         @else {
         <h2> No image available</h2>
@@ -25,8 +25,30 @@
             {{ course.longDescription }}
         </div>
 
+        <div class="course-category">
+            @switch(course.category){
+                @case ("BEGINNER"){
+                    <div class="category">Beginner</div>
+                }
+                @case("INTERMEDIATE"){
+                    <div class="category">Intermediate</div>
+                }
+                @case("ADVANCED"){
+                    <div class="category">Advanced</div>
+                }
+                @default {
+                    <div class="category">Unknown</div>
+                }
+            }
+        </div>
+
         <!-- Events -->
         <button (click)="onCourseViewed()">View Course</button>
+
+        <ng-content select=".display-this-heading"></ng-content>
+        <ng-content select="course-image" *ngIf="course.iconUrl; else blankImage"></ng-content>
+        <ng-template #blankImage>No Course Image Available</ng-template>
+
 
     </div>
 }
