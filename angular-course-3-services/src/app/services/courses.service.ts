@@ -3,13 +3,23 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Course } from '../model/course';
 
+
+let counter = 0;
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
+  // useFactory: (http) => new CoursesService(http),
+  // deps: [
+  //   HttpClient
+  // ]
+  useClass: CoursesService
 })
+
 export class CoursesService {
 
   constructor(private http: HttpClient) {
-    console.log("creating courses Service");
+    counter++;
+    console.log("creating courses Service"+counter);
   }
 
   loadCourses(): Observable<Course[]> {

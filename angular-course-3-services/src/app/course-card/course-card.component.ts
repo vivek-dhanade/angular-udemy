@@ -10,7 +10,9 @@ import {
     Output,
     QueryList,
     ViewEncapsulation,
-    Inject
+    Inject,
+    ChangeDetectionStrategy,
+    Attribute
 } from '@angular/core';
 import {Course} from '../model/course';
 import {CourseImageComponent} from '../course-image/course-image.component';
@@ -20,7 +22,8 @@ import { CoursesService } from '../services/courses.service';
     selector: 'course-card',
     templateUrl: './course-card.component.html',
     styleUrls: ['./course-card.component.css'],
-    standalone: false
+    standalone: false,
+    // changeDetection: ChangeDetectionStrategy.OnPush  // detects changes only for input values as a whole, otherwise skipped. used for faster application
 })
 export class CourseCardComponent implements OnInit {
 
@@ -34,8 +37,10 @@ export class CourseCardComponent implements OnInit {
     courseEmitter = new EventEmitter<Course>();
 
 
-    constructor( private coursesService: CoursesService) {
-
+    constructor( private coursesService: CoursesService,
+        @Attribute('type') private type: string
+    ) {
+        // console.log("Type:", type);
     }
 
     ngOnInit() {
@@ -50,6 +55,8 @@ export class CourseCardComponent implements OnInit {
     }
 
 
-
+    onTitleChanged(newTitle: string){
+        this.course.description = newTitle;
+    }
 
 }
