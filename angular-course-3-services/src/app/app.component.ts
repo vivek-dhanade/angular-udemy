@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, InjectionToken, OnInit, QueryList, ViewChild, ViewChildren, NgModule,Inject, ChangeDetectionStrategy, Attribute, ChangeDetectorRef, DoCheck} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, InjectionToken, OnInit, QueryList, ViewChild, ViewChildren, NgModule,Inject, ChangeDetectionStrategy, Attribute, ChangeDetectorRef, DoCheck, OnChanges, SimpleChanges} from '@angular/core';
 import {COURSES} from '../db-data';
 import {Course} from './model/course';
 import {CourseCardComponent} from './course-card/course-card.component';
@@ -47,13 +47,13 @@ import { APP_CONFIG, AppConfig, CONFIG_TOKEN } from './config';
 // export class AppComponent implements OnInit, DoCheck {
 export class AppComponent implements OnInit {
 
-  // courses = COURSES;
+  courses = COURSES;
  
   // courses;
 
   // courses$ : Observable<Course[]>;
 
-  courses: Course[];
+  // courses: Course[];
 
   // constructor(private http: HttpClient, private coursesService: CoursesService) {
   // }
@@ -128,5 +128,9 @@ export class AppComponent implements OnInit {
     // const newCourse:any = {...course};
     // newCourse.description = "New Course!";
     // this.courses$[0] = newCourse;
+  }
+
+  deleteCourses(){
+    this.courses=[undefined];
   }
 }
