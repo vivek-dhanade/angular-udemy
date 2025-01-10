@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, InjectionToken, OnInit, QueryList, ViewChild, ViewChildren, NgModule,Inject, ChangeDetectionStrategy, Attribute, ChangeDetectorRef, DoCheck, OnChanges, SimpleChanges} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, InjectionToken, OnInit, QueryList, ViewChild, ViewChildren, NgModule,Inject, ChangeDetectionStrategy, Attribute, ChangeDetectorRef, DoCheck, OnChanges, SimpleChanges, Injector} from '@angular/core';
 import {COURSES} from '../db-data';
 import {Course} from './model/course';
 // import {CourseCardComponent} from './course-card/course-card.component';
@@ -7,6 +7,8 @@ import {Observable} from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { CoursesService } from './courses/services/courses.service';
 import { APP_CONFIG, AppConfig, CONFIG_TOKEN } from './config';
+import { createCustomElement } from '@angular/elements';
+import { CourseTitleComponent } from './courses/course-title/course-title.component';
 
 // function coursesServiceProvider(http: HttpClient): CoursesService{
 //   return new CoursesService(http);
@@ -48,6 +50,8 @@ import { APP_CONFIG, AppConfig, CONFIG_TOKEN } from './config';
 export class AppComponent implements OnInit {
 
   courses = COURSES;
+
+  coursesTotal = this.courses.length;
  
   // courses;
 
@@ -62,7 +66,8 @@ export class AppComponent implements OnInit {
   // }
   constructor( private coursesService: CoursesService,
     @Inject(CONFIG_TOKEN)private config: AppConfig,
-    private cd: ChangeDetectorRef    
+    private injector: Injector
+    // private cd: ChangeDetectorRef    
   ){
 
     // console.log(config);
@@ -102,6 +107,9 @@ export class AppComponent implements OnInit {
       // this.cd.markForCheck();
     });
 
+    const htmlElement = createCustomElement(CourseTitleComponent, {injector: this.injector} );
+
+    customElements.define('course-title' , htmlElement);
   }
 
   save(course:Course){

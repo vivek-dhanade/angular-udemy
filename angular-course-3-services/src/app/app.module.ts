@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { NgxUnlessDirective } from './directives/ngx-unless.directive';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { CoursesModule } from './courses/courses.module';
+import { CourseTitleComponent } from './courses/course-title/course-title.component';
 
 @NgModule({ declarations: [
         AppComponent
@@ -23,5 +24,7 @@ import { CoursesModule } from './courses/courses.module';
         BrowserAnimationsModule, 
         CoursesModule
     ], 
-    providers: [provideHttpClient(withInterceptorsFromDi())] })
+    providers: [provideHttpClient(withInterceptorsFromDi())],
+
+ })
 export class AppModule { }
