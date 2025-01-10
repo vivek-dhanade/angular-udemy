@@ -118,16 +118,18 @@ export class AppComponent implements OnInit {
   onEditCourse(){
     // const newCourse:any = {...this.courses[0]} 
     //OR
-    const course= this.courses[0];
-    const newCourse:any = {...course};
+    // const course= this.courses[0];
+    // const newCourse:any = {...course};
 
-    newCourse.description = "New Course!";
-    this.courses[0] = newCourse;
+    // newCourse.description = "New Course!";
+    // this.courses[0] = newCourse;
 
     // const course= this.courses$[0];
     // const newCourse:any = {...course};
     // newCourse.description = "New Course!";
     // this.courses$[0] = newCourse;
+
+    this.courses[1].category = 'ADVANCED';
   }
 
   deleteCourses(){

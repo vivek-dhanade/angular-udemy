@@ -15,13 +15,12 @@
   </div>
 
   <!-- <div class="courses"> -->
-  <div class="courses" *ngIf="courses[0] as course">
+  <div class="courses" *ngIf="courses as courses">
   <!-- <div class="courses" *ngIf="(courses$ | async) as courses"> -->
 
-    <!-- <course-card *ngFor="let course of courses"
-                 type="beginner"
-                 [course]="course">  -->
-    <course-card type="beginner" [course]="course">
+    <course-card *ngFor="let course of courses | filterByCategory: 'BEGINNER'"
+                 [course]="course"> 
+    <!-- <course-card type="beginner" [course]="course"> -->
     <!-- <course-card highlighted *ngFor="let course of courses"
                   (courseChanged)="save($event)"
                  [course]="course"> -->
