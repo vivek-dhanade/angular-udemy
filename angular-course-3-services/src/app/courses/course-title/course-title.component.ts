@@ -4,7 +4,8 @@ import { Component, Input, OnInit } from '@angular/core';
   selector: 'course-title',
   imports: [],
   templateUrl: './course-title.component.html',
-  styleUrl: './course-title.component.css'
+  styleUrl: './course-title.component.css',
+  standalone: true
 })
 export class CourseTitleComponent implements OnInit {
 

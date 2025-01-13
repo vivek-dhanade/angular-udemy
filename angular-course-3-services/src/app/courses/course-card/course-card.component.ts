@@ -21,12 +21,16 @@ import {
 } from '@angular/core';
 import {Course} from '../../model/course';
 import {CourseImageComponent} from '../course-image/course-image.component';
-import { CoursesService } from '../services/courses.service';
+import { CoursesService } from   '../services/courses.service';
+import { NgIf } from '@angular/common';
 @Component({
     selector: 'course-card',
     templateUrl: './course-card.component.html',
     styleUrls: ['./course-card.component.css'],
-    standalone: false,
+    standalone: true,
+    imports:[
+        NgIf
+    ]
     // changeDetection: ChangeDetectionStrategy.OnPush  // detects changes only for input values as a whole, otherwise skipped. used for faster application
 })
 export class CourseCardComponent implements OnInit, OnDestroy, OnChanges, AfterContentChecked, AfterViewChecked, AfterContentInit, AfterViewInit, DoCheck {

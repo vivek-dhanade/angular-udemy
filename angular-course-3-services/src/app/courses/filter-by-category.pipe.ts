@@ -4,7 +4,7 @@ import { Course } from '../model/course';
 
 @Pipe({
     name: 'filterByCategory',
-    standalone: false,
+    standalone: true,
     pure: false
 })
 export class FilterByCategoryPipe implements PipeTransform{

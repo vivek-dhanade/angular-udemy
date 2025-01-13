@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, InjectionToken, OnInit, QueryList, ViewChild, ViewChildren, NgModule,Inject, ChangeDetectionStrategy, Attribute, ChangeDetectorRef, DoCheck, OnChanges, SimpleChanges, Injector} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, InjectionToken, OnInit, QueryList, ViewChild, ViewChildren, NgModule,Inject, ChangeDetectionStrategy, Attribute, ChangeDetectorRef, DoCheck, OnChanges, SimpleChanges, Injector, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {COURSES} from '../db-data';
 import {Course} from './model/course';
 // import {CourseCardComponent} from './course-card/course-card.component';
@@ -9,6 +9,10 @@ import { CoursesService } from './courses/services/courses.service';
 import { APP_CONFIG, AppConfig, CONFIG_TOKEN } from './config';
 import { createCustomElement } from '@angular/elements';
 import { CourseTitleComponent } from './courses/course-title/course-title.component';
+import { CourseCardComponent } from './courses/course-card/course-card.component';
+import { CourseImageComponent } from './courses/course-image/course-image.component';
+import { FilterByCategoryPipe } from './courses/filter-by-category.pipe';
+import { NgFor, NgForOf, NgIf } from '@angular/common';
 
 // function coursesServiceProvider(http: HttpClient): CoursesService{
 //   return new CoursesService(http);
@@ -20,7 +24,18 @@ import { CourseTitleComponent } from './courses/course-title/course-title.compon
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
-    standalone: false,
+    standalone: true,
+    imports:[
+      CourseCardComponent,
+      CourseImageComponent,
+      FilterByCategoryPipe,
+      NgFor,
+      NgForOf,
+      NgIf
+    ],
+    schemas:[
+      CUSTOM_ELEMENTS_SCHEMA
+    ]
     // providers:[
     //   {
     //     provide: COURSES_SERVICE,

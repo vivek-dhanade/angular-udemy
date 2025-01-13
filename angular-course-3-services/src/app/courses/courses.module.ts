@@ -12,26 +12,27 @@ import { CourseTitleComponent } from "./course-title/course-title.component";
 
 @NgModule({
   providers:[
-    CoursesService
+    // CoursesService
   ],
   declarations: [
-    CourseCardComponent,
-    CourseImageComponent,
-    HighlightedDirective,
-    NgxUnlessDirective,
-    FilterByCategoryPipe
+
+    // FilterByCategoryPipe
   ],
   imports: [
     CommonModule,
-    CourseTitleComponent
+    // CourseTitleComponent,
+    // CourseCardComponent,
+    // CourseImageComponent,
+    // HighlightedDirective,
+    // NgxUnlessDirective,
 ],
   exports:[
-    CourseCardComponent,
-    CourseImageComponent,
-    FilterByCategoryPipe
+    // CourseCardComponent,
+    // CourseImageComponent,
+    // FilterByCategoryPipe
   ],
   schemas:[
-    CUSTOM_ELEMENTS_SCHEMA
+    // CUSTOM_ELEMENTS_SCHEMA
   ]
 })
 export class CoursesModule { }

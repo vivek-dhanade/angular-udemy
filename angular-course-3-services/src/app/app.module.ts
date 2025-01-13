@@ -8,23 +8,27 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { HighlightedDirective } from './directives/highlighted.directive';
 // import { NgxUnlessDirective } from './directives/ngx-unless.directive';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { CoursesModule } from './courses/courses.module';
-import { CourseTitleComponent } from './courses/course-title/course-title.component';
+// import { CoursesModule } from './courses/courses.module';
+// import { CourseTitleComponent } from './courses/course-title/course-title.component';
 
 @NgModule({ declarations: [
-        AppComponent
+        // AppComponent
         // CourseCardComponent,
         // CourseImageComponent,
         // HighlightedDirective,
         // NgxUnlessDirective
     ],
-    bootstrap: [AppComponent], 
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule, 
-        CoursesModule
+    bootstrap: [
+        // AppComponent
     ], 
-    providers: [provideHttpClient(withInterceptorsFromDi())],
+    imports: [
+        // BrowserModule,
+        // BrowserAnimationsModule, 
+        // CoursesModule
+    ], 
+    providers: [
+        // provideHttpClient(withInterceptorsFromDi())
+    ],
 
  })
 export class AppModule { }

@@ -4,7 +4,7 @@ import {Component, Input, OnInit} from '@angular/core';
     selector: 'course-image',
     templateUrl: './course-image.component.html',
     styleUrls: ['./course-image.component.css'],
-    standalone: false
+    standalone: true
 })
 export class CourseImageComponent implements OnInit {
 
