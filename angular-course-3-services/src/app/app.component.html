@@ -6,39 +6,72 @@
 
 <div>
 
-  <h4 i18n="welcome message| Greet user a greeting at the beginning of the course">Welcome to Angular Core Deep Dive </h4>
+  <h4 i18n="welcome message| Greet user a greeting at the beginning of the course">Welcome to Angular Core Deep Dive
+  </h4>
 
   <div>
     <button (click)="onEditCourse()" i18n>Edit Course</button>
   </div>
-  
+
   <div>
     <button (click)="deleteCourses()" i18n="@@DeleteCourseId">Delete Course Components</button>
   </div>
 
   <div i18n>
-    
+
     {coursesTotal, plural, =0 {No courses available},
-      =1 {One course available},
-      other {Total {{coursesTotal}} courese available} }  
+    =1 {One course available},
+    other {Total {{coursesTotal}} courese available} }
   </div>
+  
+<div class="demo-triggers">
+  <!-- <div #title> Trigger viewport</div> -->
+   <!-- <input placeholder="Type of trigger prefetch" #prefetch> -->
+  <!-- <div #triggerPrefetch style="border:5px solid red; min-height: 900px; margin: 10px;"></div> -->
+   <!-- <button #display>Trigger Display</button> -->
+  <button (click)="onPrefetch()">Trigger Prefetch</button>
+  <button (click)="onDisplay()">Trigger Display</button>
+</div>
+  <!-- <div style="border:5px solid red; min-height: 900px; margin: 10px;"></div> -->
 
-  <!-- <div class="courses"> -->
-  <div class="courses" *ngIf="courses as courses">
-  <!-- <div class="courses" *ngIf="(courses$ | async) as courses"> -->
+  <!-- @defer( on idle; prefetch on idle){ -->
+  <!-- @defer( on immediate; prefetch on immediate){ -->
+   <!-- @defer( on timer(15s); prefetch on timer(10s)){  -->
+    <!-- @defer(on viewport(title); prefetch on idle){ -->
+    <!-- @defer(on interaction; prefetch on idle){ -->
+    <!-- @defer(on interaction(display); prefetch on interaction(prefetch)){ -->
+     <!-- @defer(on interaction(display); prefetch on hover(triggerPrefetch)){ -->
+      @defer(when performDisplay; prefetch when performPrefetch){
+    <!-- above both timers will start at same time -->
+    <!-- <div class="courses"> -->
+    <div class="courses" *ngIf="courses as courses">
+      <!-- <div class="courses" *ngIf="(courses$ | async) as courses"> -->
 
-    <!-- <course-card *ngFor="let course of courses | filterByCategory: 'BEGINNER'"
-                 [course]="course">  -->
-    <!-- <course-card type="beginner" [course]="course"> -->
-    <course-card highlighted *ngFor="let course of courses"
-                  (courseChanged)="save($event)"
-                 [course]="course">
-    <!-- <course-card *ngFor="let course of courses" (courseChanged)="save($event)" [course]="course"> -->
+      <!-- <course-card *ngFor="let course of courses | filterByCategory: 'BEGINNER'"
+                  [course]="course">  -->
+      <!-- <course-card type="beginner" [course]="course"> -->
+      <course-card highlighted *ngFor="let course of courses" (courseChanged)="save($event)" [course]="course">
+        <!-- <course-card *ngFor="let course of courses" (courseChanged)="save($event)" [course]="course"> -->
 
-      <course-image [src]="course.iconUrl"></course-image>
+        <course-image [src]="course.iconUrl"></course-image>
 
-    </course-card>
+      </course-card>
 
-  </div>
+    </div>
+  }
 
+  @placeholder (minimum 2s){
+    <!-- <h2>This is placeholder</h2>  -->
+     <input placeholder="this is placeholder">
+    <!-- comes when programmer hasnt permitted for the defer block to display irrespective of the data in defer block loaded from backend or not -->
+  }
+
+  @loading (after 1s){
+    <h2> Loading block</h2>
+    <!-- displayed when browser is loading data from backend -->
+  }
+
+  @error {
+    <h2> An error occurred</h2>
+  }
 </div>

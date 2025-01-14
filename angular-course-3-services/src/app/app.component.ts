@@ -28,7 +28,7 @@ import { NgFor, NgForOf, NgIf } from '@angular/common';
     imports:[
       CourseCardComponent,
       CourseImageComponent,
-      FilterByCategoryPipe,
+      // FilterByCategoryPipe,
       NgFor,
       NgForOf,
       NgIf
@@ -157,5 +157,17 @@ export class AppComponent implements OnInit {
 
   deleteCourses(){
     this.courses=[undefined];
+  }
+
+  performPrefetch: boolean = false;
+
+  performDisplay: boolean = false;
+
+  onPrefetch(){
+    this.performPrefetch = true;
+  }
+
+  onDisplay(){
+    this.performDisplay = true;
   }
 }
