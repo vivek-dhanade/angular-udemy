@@ -1,0 +1,10 @@
+
+<!-- <p>Counter: {{ counter }}</p> -->
+<p>Counter: {{ counterService.counter() }}</p>
+<p> Derived Counter: {{derivedCounter()}}</p>
+<p>Multiplier: {{multiplier}}</p>
+<!-- <div> Course Title: {{course().title}}</div>
+<div> Course: {{ courses().join(",")}}</div> -->
+<button (click)="increment()">Increment</button>
+<button (click)="incrementMultiplier()">Increment Multiplier</button>
+<button (click)="cleanup()">Cleanup Effect</button>

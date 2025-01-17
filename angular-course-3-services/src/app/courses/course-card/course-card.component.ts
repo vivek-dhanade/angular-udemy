@@ -17,7 +17,11 @@ import {
     OnChanges,
     AfterContentChecked,
     AfterViewChecked,
-    DoCheck
+    DoCheck,
+    input,
+    computed,
+    effect,
+    InputOptionsWithTransform
 } from '@angular/core';
 import {Course} from '../../model/course';
 import {CourseImageComponent} from '../course-image/course-image.component';
@@ -35,8 +39,16 @@ import { NgIf } from '@angular/common';
 })
 export class CourseCardComponent implements OnInit, OnDestroy, OnChanges, AfterContentChecked, AfterViewChecked, AfterContentInit, AfterViewInit, DoCheck {
 
-    @Input()
-    course: Course;
+    // @Input()
+    // course: Course;
+
+    course = input<Course>(null, {
+        alias: 'tutorial'
+        // transform: (val) =>{
+        //     console.log("transformed");
+        //     return val;
+        // }
+    });
 
     @Input()
     cardIndex: number;
@@ -50,11 +62,22 @@ export class CourseCardComponent implements OnInit, OnDestroy, OnChanges, AfterC
     ) {
         // console.log("Type:", type);
         console.log("constructor",this.course);
+
+        effect(()=>{
+            console.log(`New Course Value:`,this.course());
+        })
     }
 
     ngOnInit() {
         console.log("ngOnInit");
         console.log(this.coursesService , "");
+
+        const description = computed(()=>{
+            const course = this.course();
+            return course.description + '(' + course.category + ')' ;
+        });
+
+ 
     }
 
     ngOnChanges(changes) {
@@ -90,12 +113,14 @@ export class CourseCardComponent implements OnInit, OnDestroy, OnChanges, AfterC
     }
 
     onSaveClicked(description:string) {
-        this.courseEmitter.emit({...this.course, description});
+        // this.courseEmitter.emit({...this.course, description});
+        this.courseEmitter.emit({...this.course(), description});
+
     }
 
 
     onTitleChanged(newTitle: string){
-        this.course.description = newTitle;
+        this.course().description = newTitle;
     }
 
 }

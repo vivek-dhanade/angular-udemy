@@ -1,15 +1,20 @@
 <div class="course-card" *ngIf="course" #container>
   <div class="course-title">
-    {{ cardIndex || '' + ' ' + course.description }}
+    <!-- {{ cardIndex || '' + ' ' + course.description }} -->
+    {{ cardIndex || '' + ' ' + course().description }}
       <!-- <course-title [title]="course.description"></course-title> -->
   </div>
 
+  <!-- <ng-content select="course-image"
+              *ngIf="course.iconUrl"></ng-content> -->
+
   <ng-content select="course-image"
-              *ngIf="course.iconUrl"></ng-content>
+              *ngIf="course().iconUrl"></ng-content>
 
   <div class="course-description">
  
-    Edit Title: <input #courseTitle [value]="course.description" (keyup)="onTitleChanged(courseTitle.value)">
+    <!-- Edit Title: <input #courseTitle [value]="course.description" (keyup)="onTitleChanged(courseTitle.value)"> -->
+    Edit Title: <input #courseTitle [value]="course().description" (keyup)="onTitleChanged(courseTitle.value)">
 
   </div>
 <!-- 
@@ -25,8 +30,15 @@
 
   <div class="course-category">
     <div class="category" i18n>
-      {
+      <!-- {
         course.category,
+        select,
+        BEGINNER {Beginner}
+        INTERMEDIATE {Intermediate}
+        ADVANCED {Advanced}
+      } -->
+      {
+        course().category,
         select,
         BEGINNER {Beginner}
         INTERMEDIATE {Intermediate}
